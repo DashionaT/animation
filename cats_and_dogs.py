@@ -12,10 +12,10 @@ import random
 pygame.init()
 
 #Images
-spaghet = pygame.image.load('cloud.png')
-noodle = pygame.image.load('cat.png')
-sauce = pygame.image.load('sky.png')
-noodles = pygame.image.load('ground.png')
+cloud = pygame.image.load('cloud.png')
+cat = pygame.image.load('cat.png')
+sky = pygame.image.load('sky.jpeg')
+noodles = pygame.image.load('ground.jpeg')
 meatball = pygame.image.load('planet.png')
 
 # Window
@@ -46,7 +46,7 @@ for i in range(num_clouds):
 def draw_cloud(loc):
     x = loc[0]
     y = loc[1]
-    screen.blit(spaghet, (x, y))
+    screen.blit(cloud, (x, y))
 
 # Make rain
 num_rain = 20
@@ -60,7 +60,7 @@ for i in range(num_rain):
 def draw_rain(loc):
     x = loc[0]
     y = loc[1]
-    screen.blit(noodle, (x,y))
+    screen.blit(cat, (x,y))
 
    
 # Game loop
@@ -90,31 +90,21 @@ while not done:
              
     # Drawing code
     ''' sky '''
-    screen.blit(sauce, (0, 0))
+    screen.blit(sky, (0, 0))
 
     ''' sun '''
-    screen.blit(meatball, (575, 25))
-
-    ''' clouds '''
-    for c in clouds:
-        draw_cloud(c)
+    screen.blit(meatball, (550, -10))
 
     ''' grass '''
     screen.blit(noodles, (0, 400))
 
-
-    ''' fence '''
-    y = 380
-    for x in range(5, 800, 30):
-        pygame.draw.polygon(screen, WHITE, [[x+5, y], [x+10, y+5],
-                                            [x+10, y+40], [x, y+40],
-                                            [x, y+5]])
-    pygame.draw.line(screen, WHITE, [0, 390], [800, 390], 5)
-    pygame.draw.line(screen, WHITE, [0, 410], [800, 410], 5)
-
     ''' rain '''
     for r in rain:
         draw_rain(r)
+
+    ''' clouds '''
+    for c in clouds:
+        draw_cloud(c)
 
 
     # Update screen
