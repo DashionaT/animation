@@ -107,7 +107,7 @@ while not done:
     for s in stand:
         s[0] -= s[2]
 
-        if s[0] > 900:
+        if s[0] > 700:
             s[0] = random.randrange(900, 50)
             s[1] = random.randrange(400, 500)
             
