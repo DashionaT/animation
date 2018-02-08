@@ -21,7 +21,7 @@ dolphin = pygame.image.load('dolphin.png')
 
 # Window
 SIZE = (800, 600)
-TITLE = "Cats and DOgs"
+TITLE = "Cats and Dogs"
 screen = pygame.display.set_mode(SIZE)
 pygame.display.set_caption(TITLE)
 
@@ -34,8 +34,11 @@ GREEN = (0, 175, 0)
 WHITE = (255, 255, 255)
 BLUE = (75, 200, 255)
 YELLOW = (255, 255, 175)
+GRAY = (75, 75, 75)
 
 # Make clouds
+stormy = True
+
 num_clouds = 20
 clouds = []
 for i in range(num_clouds):
@@ -78,7 +81,9 @@ def animal(place):
     y = place[1]
 
     screen.blit(dolphin, (x,y))
-    
+
+lightning_timer = 0
+
 # Game loop
 done = False
 
@@ -107,14 +112,25 @@ while not done:
     for s in stand:
         s[0] -= s[2]
 
-        if s[0] > 700:
+        if s[0] > 900:
             s[0] = random.randrange(900, 50)
             s[1] = random.randrange(400, 500)
+
+
+    ''' flash lighting '''
+    if stormy:
+        if random.randrange(0, 150) == 0:
+            lightning_timer = 5
+        else:
+            lightning_timer -= 1
             
     # Drawing code
     ''' sky '''
-    screen.blit(sky, (0, 0))
-
+    if lightning_timer > 0:
+        screen.fill(YELLOW)
+    else:
+        screen.fill(GRAY)
+        
     ''' sun '''
     screen.blit(meatball, (550, -10))
 
