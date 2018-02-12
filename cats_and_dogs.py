@@ -9,6 +9,7 @@ import pygame
 import random
 
 # Initialize game engine
+pygame.mixer.pre_init()
 pygame.init()
 
 #Images
@@ -21,7 +22,7 @@ dolphin = pygame.image.load('dolphin.png')
 
 # Window
 SIZE = (800, 600)
-TITLE = "Cats and Dogs"
+TITLE = "It's Raining Cats"
 screen = pygame.display.set_mode(SIZE)
 pygame.display.set_caption(TITLE)
 
@@ -84,7 +85,12 @@ def animal(place):
 
 lightning_timer = 0
 
+# Sound Effects
+pygame.mixer.music.load("thunder_rain.ogg")
+
 # Game loop
+pygame.mixer.music.play(-1)
+
 done = False
 
 while not done:
@@ -93,13 +99,13 @@ while not done:
         if event.type == pygame.QUIT:
             done = True     
 
-    # Game logic
+# Game logic
     for c in clouds:
         c[0] += 2
 
-        if c[0] > 900:
-           c[0] = random.randrange(-800, -100)
-           c[1] = random.randrange(-50, 200)
+    if c[0] > 900:
+        c[0] = random.randrange(-800, -100)
+        c[1] = random.randrange(-50, 200)
 
     for r in rain:
         r[0] -= 2
